@@ -1,0 +1,26 @@
+{
+  "name": "nodejs-guolu",
+  "version": "1.0.0",
+  "description": "try to use iot",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/minikiller/nodejs-guolu.git"
+  },
+  "keywords": [
+    "iot"
+  ],
+  "author": "sunlf",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/minikiller/nodejs-guolu/issues"
+  },
+  "homepage": "https://github.com/minikiller/nodejs-guolu#readme",
+  "dependencies": {
+    "mysql": "^2.17.1",
+    "restify": "^8.5.1"
+  }
+}
