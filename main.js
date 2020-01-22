@@ -5,8 +5,8 @@
 const corsMiddleware = require('restify-cors-middleware');
 const cors = corsMiddleware({
     origins: ["*"],
-    allowHeaders: ["Authorization"],
-    exposeHeaders: ["Authorization"]
+    allowHeaders: [],
+    exposeHeaders: []
 });
 const config = require('./config'),
     restify = require('restify'),
@@ -37,9 +37,23 @@ server.use(cors.actual);
   return next();
 });*/
 
+server.pre((req, res, next) => {
+    console.info(`${req.method} - ${req.url}`);
+    return next();
+});
+
 //rest api to get all results
 server.get('/employees', function (req, res) {
     connection.query('select * from employee', function (error, results, fields) {
+        if (error) throw error;
+        res.end(JSON.stringify(results));
+    });
+});
+
+server.get('/query', function (req, res) {
+    connection.query('SELECT *, ABS(NOW() - create_time) AS diffTime\n' +
+        '   FROM employee\n' +
+        '   ORDER BY diffTime ASC limit 1', function (error, results, fields) {
         if (error) throw error;
         res.end(JSON.stringify(results));
     });
