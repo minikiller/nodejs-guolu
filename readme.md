@@ -19,6 +19,7 @@ Query OK, 0 rows affected (0.01 sec)
 
 ### example refer
 https://www.js-tutorials.com/nodejs-tutorial/node-js-restify-example-using-mysql/#
+https://github.com/ThorstenHans/restify-headstart
 
 ### latest record
 ```
