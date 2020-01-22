@@ -1,13 +1,16 @@
-var restify = require('restify');
+const restify = require('restify');
 
-function respond(req, res, next) {
-    res.send('hello ' + req.params.name);
-}
+const server = restify.createServer();
+server.use(restify.plugins.acceptParser(server.acceptable));
+server.use(restify.plugins.authorizationParser());
+server.use(restify.plugins.queryParser());
+server.use(restify.plugins.gzipResponse());
+server.use(restify.plugins.bodyParser());
 
-var server = restify.createServer();
-server.get('/hello/:name', respond);
-server.head('/hello/:name', respond);
-
-server.listen(3900, function() {
-    console.log('%s listening at %s', server.name, server.url);
+server.post('/plugins', (req, res, next) => {
+    console.log(req.body);
+    res.send({a: 1});
+    return next();
 });
+
+server.listen(8000, () => console.log('%s listening at %s', server.name, server.url));
