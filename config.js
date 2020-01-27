@@ -12,7 +12,7 @@ module.exports = {
         get : mysql.createConnection({
 			host     : '192.119.116.101',
 			user     : 'root',
-			password : '123',
+			password : 'kalix@163.com',
 			database : 'kalix'
 		})
     }

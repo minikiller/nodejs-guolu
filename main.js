@@ -3,6 +3,7 @@
  */
 // import * as corsMiddleware from "";
 const corsMiddleware = require('restify-cors-middleware');
+const errors = require('restify-errors');
 const cors = corsMiddleware({
     origins: ["*"],
     allowHeaders: [],
@@ -68,12 +69,16 @@ server.get('/employees/:id', function (req, res) {
 });
 
 //rest api to create a new record into mysql database
-server.post('/employees', function (req, res) {
-    var postData = req.body;
-    connection.query('INSERT INTO employee SET ?', postData, function (error, results, fields) {
-        if (error) throw error;
-        res.end(JSON.stringify(results));
-    });
+server.post('/employees', function (req, res, next) {
+    try {
+        var postData = req.body;
+        connection.query('INSERT INTO employee SET ?', postData);
+        res.send(201);
+        next();
+    }catch (e) {
+        return next(new errors.InvalidContentError(err));
+    }
+
 
 });
 
@@ -96,7 +101,6 @@ server.del('/employees/:id', function (req, res) {
 server.get('/', function (req, res) {
     console.log('Welcome Nodejs restify');
 });
-
 
 
 server.listen(3001, function () {

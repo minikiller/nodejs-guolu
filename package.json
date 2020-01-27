@@ -24,6 +24,6 @@
     "restify": "^6.3.4",
     "restify-clients": "^2.6.8",
     "restify-cors-middleware": "^1.0.1",
-    "restify-errors": "^5.0.0"
+    "restify-errors": "^8.0.2"
   }
 }
