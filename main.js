@@ -72,9 +72,12 @@ server.get('/employees/:id', function (req, res) {
 server.post('/employees', function (req, res, next) {
     try {
         var postData = req.body;
-        connection.query('INSERT INTO employee SET ?', postData);
-        res.send(201);
-        next();
+        connection.query('INSERT INTO employee SET ?', postData,(err,result)=>{
+            if(err){
+                console.log('[INSERT ERROR] - ',err.message);
+                return next(new errors.InvalidContentError(err));
+            }
+        });
     }catch (e) {
         return next(new errors.InvalidContentError(err));
     }
