@@ -26,7 +26,7 @@ const server = restify.createServer({
 var connection = config.db.get;
 server.use(restify.plugins.acceptParser(server.acceptable));
 server.use(restify.plugins.queryParser());
-server.use(restify.plugins.bodyParser());
+server.use(restify.plugins.bodyParser({mapParams: false}));
 server.use(restify.plugins.fullResponse());
 
 server.pre(cors.preflight);
@@ -44,8 +44,8 @@ server.pre((req, res, next) => {
 });
 
 //rest api to get all results
-server.get('/employees', function (req, res) {
-    connection.query('select * from employee', function (error, results, fields) {
+server.get('/results', function (req, res) {
+    connection.query('select * from result', function (error, results, fields) {
         if (error) throw error;
         res.end(JSON.stringify(results));
     });
@@ -53,34 +53,36 @@ server.get('/employees', function (req, res) {
 
 server.get('/query', function (req, res) {
     connection.query('SELECT *, ABS(NOW() - create_time) AS diffTime\n' +
-        '   FROM employee\n' +
+        '   FROM result\n' +
         '   ORDER BY diffTime ASC limit 1', function (error, results, fields) {
         if (error) throw error;
         res.end(JSON.stringify(results));
     });
 });
 
-//rest api to get a single employee data
-server.get('/employees/:id', function (req, res) {
-    connection.query('select * from employee where id=?', [req.params.id], function (error, results, fields) {
+//rest api to get a single result data
+server.get('/results/:id', function (req, res) {
+    connection.query('select * from result where id=?', [req.params.id], function (error, results, fields) {
         if (error) throw error;
         res.end(JSON.stringify(results));
     });
 });
 
 //rest api to create a new record into mysql database
-server.post('/employees', function (req, res, next) {
+server.post('/results', function (req, res, next) {
     try {
         var postData = req.body;
-        connection.query('INSERT INTO employee SET ?', postData,(err,result)=>{
-            if(err){
-                console.log('[INSERT ERROR] - ',err.message);
-                return next(new errors.InvalidContentError(err));
-            }
-            res.send(201);
-            next();
-        });
-
+        // var jsonBody = JSON.parse(req.body);
+        postData.forEach(data =>{
+            connection.query('INSERT INTO result SET ?', data,(err)=>{
+                if(err){
+                    console.log('[INSERT ERROR] - ',err.message);
+                    return next(new errors.InvalidContentError(err));
+                }
+            });
+        })
+        res.send(201);
+        next();
     }catch (e) {
         return next(new errors.InvalidContentError(err));
     }
@@ -89,16 +91,16 @@ server.post('/employees', function (req, res, next) {
 });
 
 //rest api to update record into mysql database
-server.put('/employees', function (req, res) {
-    connection.query('UPDATE `employee` SET `employee_name`=?,`employee_salary`=?,`employee_age`=? where `id`=?', [req.body.employee_name, req.body.employee_salary, req.body.employee_age, req.body.id], function (error, results, fields) {
+server.put('/results', function (req, res) {
+    connection.query('UPDATE `result` SET `result_name`=?,`result_salary`=?,`result_age`=? where `id`=?', [req.body.result_name, req.body.result_salary, req.body.result_age, req.body.id], function (error, results, fields) {
         if (error) throw error;
         res.end(JSON.stringify(results));
     });
 });
 
 //rest api to delete record from mysql database
-server.del('/employees/:id', function (req, res) {
-    connection.query('DELETE FROM `employee` WHERE `id`=?', [req.params.id], function (error, results, fields) {
+server.del('/results/:id', function (req, res) {
+    connection.query('DELETE FROM `result` WHERE `id`=?', [req.params.id], function (error, results, fields) {
         if (error) throw error;
         res.end('Record has been deleted!');
     });
