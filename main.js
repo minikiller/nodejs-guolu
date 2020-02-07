@@ -77,7 +77,10 @@ server.post('/employees', function (req, res, next) {
                 console.log('[INSERT ERROR] - ',err.message);
                 return next(new errors.InvalidContentError(err));
             }
+            res.send(201);
+            next();
         });
+
     }catch (e) {
         return next(new errors.InvalidContentError(err));
     }
