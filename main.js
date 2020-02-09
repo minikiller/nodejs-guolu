@@ -52,7 +52,7 @@ server.get('/results', function (req, res) {
 });
 
 server.get('/query', function (req, res) {
-    connection.query('SELECT *, ABS(NOW() - create_time) AS diffTime\n' +
+    connection.query('SELECT *, ABS(NOW() - CurDate) AS diffTime\n' +
         '   FROM result\n' +
         '   ORDER BY diffTime ASC limit 1', function (error, results, fields) {
         if (error) throw error;
@@ -70,22 +70,22 @@ server.get('/results/:id', function (req, res) {
 
 //rest api to create a new record into mysql database
 server.post('/results', function (req, res, next) {
-    try {
-        var postData = req.body;
-        // var jsonBody = JSON.parse(req.body);
-        postData.forEach(data =>{
-            connection.query('INSERT INTO result SET ?', data,(err)=>{
-                if(err){
-                    console.log('[INSERT ERROR] - ',err.message);
-                    return next(new errors.InvalidContentError(err));
-                }
-            });
-        })
+
+    var postData = req.body;
+    var objArray = []
+    postData.forEach(map => {
+        objArray.push(Object.values(map))
+    })
+    const query = "INSERT INTO result (P_Value, T_Value, Dry_Value,Qm_Value,Qh_Value,Acc_Qm_Value,Acc_Qh_Value,Type) VALUES ?";
+    connection.query(query, [objArray], (err, result) => {
+        if (err) {
+            console.log('[INSERT ERROR] - ', err.message);
+            return next(new errors.InvalidContentError(err));
+        }
+        console.log(result);
         res.send(201);
         next();
-    }catch (e) {
-        return next(new errors.InvalidContentError(err));
-    }
+    });
 
 
 });

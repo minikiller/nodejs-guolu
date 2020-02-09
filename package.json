@@ -20,6 +20,7 @@
   },
   "homepage": "https://github.com/minikiller/nodejs-guolu#readme",
   "dependencies": {
+    "lodash": "^4.17.15",
     "mysql": "^2.17.1",
     "restify": "^6.3.4",
     "restify-clients": "^2.6.8",
