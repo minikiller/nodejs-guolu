@@ -51,10 +51,10 @@ server.get('/results', function (req, res) {
     });
 });
 
-server.get('/query/:typeId', function (req, res) {
+server.get('/query/:typeId', function (req, res, next) {
     connection.query('SELECT *, ABS(NOW() - CurDate) AS diffTime ' +
         '   FROM result ' +
-        ' where Type=?  ORDER BY diffTime ASC limit 1 ', [req.params.typeId], function (error, results, fields) {
+        ' where Type=?  ORDER BY diffTime ASC limit 1 ', [req.params.typeId], function (error, results) {
         if (error) throw error;
         res.end(JSON.stringify(results));
     });
