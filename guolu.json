@@ -10,7 +10,7 @@
         "4": 1
       },
       "col": {
-        "4": 3
+        "4": 1
       },
       "col_width": 1,
       "widgets": [
@@ -19,9 +19,9 @@
           "settings": {
             "title": "工作压力",
             "value": "datasources[\"unit1\"][0][\"P_Value\"]",
-            "units": "度",
+            "units": "MPa",
             "min_value": 0,
-            "max_value": 100
+            "max_value": 32
           }
         },
         {
@@ -29,7 +29,7 @@
           "settings": {
             "title": "工作温度",
             "value": "datasources[\"unit1\"][0][\"T_Value\"]",
-            "units": "度",
+            "units": "℃",
             "min_value": 0,
             "max_value": 500
           }
@@ -39,7 +39,7 @@
           "settings": {
             "title": "蒸汽干度",
             "value": "datasources[\"unit1\"][0][\"Dry_Value\"]",
-            "units": "度",
+            "units": "%",
             "min_value": 0,
             "max_value": 100
           }
@@ -49,9 +49,9 @@
           "settings": {
             "title": "质量流量",
             "value": "datasources[\"unit1\"][0][\"Qm_Value\"]",
-            "units": "度",
+            "units": "t/h",
             "min_value": 0,
-            "max_value": 100
+            "max_value": 25
           }
         },
         {
@@ -59,29 +59,9 @@
           "settings": {
             "title": "热量流量",
             "value": "datasources[\"unit1\"][0][\"Qh_Value\"]",
-            "units": "度",
+            "units": "GJ/h",
             "min_value": 0,
             "max_value": 100
-          }
-        },
-        {
-          "type": "gauge",
-          "settings": {
-            "title": "累积流量",
-            "value": "datasources[\"unit1\"][0][\"Acc_Qm_Value\"]",
-            "units": "度",
-            "min_value": 0,
-            "max_value": 500
-          }
-        },
-        {
-          "type": "gauge",
-          "settings": {
-            "title": "累积热量",
-            "value": "datasources[\"unit1\"][0][\"Acc_Qh_Value\"]",
-            "units": "度",
-            "min_value": 0,
-            "max_value": 1000
           }
         }
       ]
@@ -102,9 +82,9 @@
           "settings": {
             "title": "工作压力",
             "value": "datasources[\"unit2\"][0][\"P_Value\"]",
-            "units": "度",
+            "units": "MPa",
             "min_value": 0,
-            "max_value": 100
+            "max_value": 32
           }
         },
         {
@@ -112,7 +92,7 @@
           "settings": {
             "title": "工作温度",
             "value": "datasources[\"unit2\"][0][\"T_Value\"]",
-            "units": "度",
+            "units": "℃",
             "min_value": 0,
             "max_value": 500
           }
@@ -122,7 +102,7 @@
           "settings": {
             "title": "蒸汽干度",
             "value": "datasources[\"unit2\"][0][\"Dry_Value\"]",
-            "units": "度",
+            "units": "%",
             "min_value": 0,
             "max_value": 100
           }
@@ -132,9 +112,9 @@
           "settings": {
             "title": "质量流量",
             "value": "datasources[\"unit2\"][0][\"Qm_Value\"]",
-            "units": "度",
+            "units": "t/h",
             "min_value": 0,
-            "max_value": 100
+            "max_value": 25
           }
         },
         {
@@ -142,17 +122,40 @@
           "settings": {
             "title": "热量流量",
             "value": "datasources[\"unit2\"][0][\"Qh_Value\"]",
-            "units": "度",
+            "units": "GJ/h",
             "min_value": 0,
             "max_value": 100
+          }
+        }
+      ]
+    },
+    {
+      "title": "113注汽官网",
+      "width": 1,
+      "row": {
+        "4": 1
+      },
+      "col": {
+        "4": 3
+      },
+      "col_width": 1,
+      "widgets": [
+        {
+          "type": "gauge",
+          "settings": {
+            "title": "工作压力",
+            "value": "datasources[\"unit3\"][0][\"P_Value\"]",
+            "units": "MPa",
+            "min_value": 0,
+            "max_value": 32
           }
         },
         {
           "type": "gauge",
           "settings": {
-            "title": "累积流量",
-            "value": "datasources[\"unit2\"][0][\"Acc_Qm_Value\"]",
-            "units": "度",
+            "title": "工作温度",
+            "value": "datasources[\"unit3\"][0][\"T_Value\"]",
+            "units": "℃",
             "min_value": 0,
             "max_value": 500
           }
@@ -160,17 +163,37 @@
         {
           "type": "gauge",
           "settings": {
-            "title": "累积热量",
-            "value": "datasources[\"unit2\"][0][\"Acc_Qh_Value\"]",
-            "units": "度",
+            "title": "蒸汽干度",
+            "value": "datasources[\"unit3\"][0][\"Dry_Value\"]",
+            "units": "%",
             "min_value": 0,
-            "max_value": 1000
+            "max_value": 100
+          }
+        },
+        {
+          "type": "gauge",
+          "settings": {
+            "title": "质量流量",
+            "value": "datasources[\"unit3\"][0][\"Qm_Value\"]",
+            "units": "t/h",
+            "min_value": 0,
+            "max_value": 25
+          }
+        },
+        {
+          "type": "gauge",
+          "settings": {
+            "title": "热量流量",
+            "value": "datasources[\"unit3\"][0][\"Qh_Value\"]",
+            "units": "GJ/h",
+            "min_value": 0,
+            "max_value": 100
           }
         }
       ]
     },
     {
-      "title": "113注汽官网",
+      "title": "114注汽官网",
       "width": 1,
       "row": {
         "4": 1
@@ -184,93 +207,10 @@
           "type": "gauge",
           "settings": {
             "title": "工作压力",
-            "value": "datasources[\"unit3\"][0][\"P_Value\"]",
-            "units": "度",
-            "min_value": 0,
-            "max_value": 100
-          }
-        },
-        {
-          "type": "gauge",
-          "settings": {
-            "title": "工作温度",
-            "value": "datasources[\"unit3\"][0][\"T_Value\"]",
-            "units": "度",
-            "min_value": 0,
-            "max_value": 500
-          }
-        },
-        {
-          "type": "gauge",
-          "settings": {
-            "title": "蒸汽干度",
-            "value": "datasources[\"unit3\"][0][\"Dry_Value\"]",
-            "units": "度",
-            "min_value": 0,
-            "max_value": 100
-          }
-        },
-        {
-          "type": "gauge",
-          "settings": {
-            "title": "质量流量",
-            "value": "datasources[\"unit3\"][0][\"Qm_Value\"]",
-            "units": "度",
-            "min_value": 0,
-            "max_value": 100
-          }
-        },
-        {
-          "type": "gauge",
-          "settings": {
-            "title": "热量流量",
-            "value": "datasources[\"unit3\"][0][\"Qh_Value\"]",
-            "units": "度",
-            "min_value": 0,
-            "max_value": 100
-          }
-        },
-        {
-          "type": "gauge",
-          "settings": {
-            "title": "累积流量",
-            "value": "datasources[\"unit3\"][0][\"Acc_Qm_Value\"]",
-            "units": "度",
-            "min_value": 0,
-            "max_value": 500
-          }
-        },
-        {
-          "type": "gauge",
-          "settings": {
-            "title": "累积热量",
-            "value": "datasources[\"unit3\"][0][\"Acc_Qh_Value\"]",
-            "units": "度",
-            "min_value": 0,
-            "max_value": 1000
-          }
-        }
-      ]
-    },
-    {
-      "title": "114注汽官网",
-      "width": 1,
-      "row": {
-        "4": 1
-      },
-      "col": {
-        "4": 1
-      },
-      "col_width": 1,
-      "widgets": [
-        {
-          "type": "gauge",
-          "settings": {
-            "title": "工作压力",
             "value": "datasources[\"unit4\"][0][\"P_Value\"]",
-            "units": "度",
+            "units": "MPa",
             "min_value": 0,
-            "max_value": 100
+            "max_value": 32
           }
         },
         {
@@ -278,7 +218,7 @@
           "settings": {
             "title": "工作温度",
             "value": "datasources[\"unit4\"][0][\"T_Value\"]",
-            "units": "度",
+            "units": "℃",
             "min_value": 0,
             "max_value": 500
           }
@@ -288,7 +228,7 @@
           "settings": {
             "title": "蒸汽干度",
             "value": "datasources[\"unit4\"][0][\"Dry_Value\"]",
-            "units": "度",
+            "units": "%",
             "min_value": 0,
             "max_value": 100
           }
@@ -298,9 +238,9 @@
           "settings": {
             "title": "质量流量",
             "value": "datasources[\"unit4\"][0][\"Qm_Value\"]",
-            "units": "度",
+            "units": "t/h",
             "min_value": 0,
-            "max_value": 100
+            "max_value": 25
           }
         },
         {
@@ -308,29 +248,9 @@
           "settings": {
             "title": "热量流量",
             "value": "datasources[\"unit4\"][0][\"Qh_Value\"]",
-            "units": "度",
+            "units": "GJ/h",
             "min_value": 0,
             "max_value": 100
-          }
-        },
-        {
-          "type": "gauge",
-          "settings": {
-            "title": "累积流量",
-            "value": "datasources[\"unit4\"][0][\"Acc_Qm_Value\"]",
-            "units": "度",
-            "min_value": 0,
-            "max_value": 500
-          }
-        },
-        {
-          "type": "gauge",
-          "settings": {
-            "title": "累积热量",
-            "value": "datasources[\"unit4\"][0][\"Acc_Qh_Value\"]",
-            "units": "度",
-            "min_value": 0,
-            "max_value": 1009
           }
         }
       ]
